@@ -54,6 +54,13 @@ function selectColor(e)
 	}
 }
 
+function drawToolBar()
+{
+	var o = document.getElementById("b").getContext("2d");
+	var d = document.getElementById("pencil")
+	o.drawImage(d, 1, screen.availHeight-135);
+}
+
 function draw(e)
 {
 var can = document.getElementById("scrn");
@@ -91,6 +98,7 @@ b.addEventListener("mousedown", selectColor, false);
 </head>
 
 <body onLoad="int()" style="background-color:#333333; margin:0px";>
+<img id="pencil" src="images/draw.png" alt="Select Pencil Tool" width="50" height="50"></img>
 <canvas id="t" width="1600" height="50" style="background-color:#232323" mousedown="selectColor(event)"></canvas>
 <canvas id="scrn" width="612" height="342" style="background-color:#F0F0F0" mousedown="draw(event)"></canvas>
 <canvas id="b" width="1600" height="50" style="background-color:#232323"></canvas>
@@ -99,6 +107,7 @@ b.addEventListener("mousedown", selectColor, false);
 
 <script>
 drawColors();
+//drawToolBar();
 var c = document.getElementById("scrn");
 var b = document.getElementById("b");
 c.style.position = "absolute";
