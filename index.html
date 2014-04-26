@@ -16,7 +16,7 @@ font-size:20px;
 </style>
 
 <title>upaint 0.1</title>
-
+<img id="pencil" src="images/pencil.png" alt="Pencil" width="50" height="50">
 <script>
 
 var colors = new Array("#F0F0F0", "#F2B233", "#E57FD8", "#99B2F2", "#DEDE6C", "#7FCC19", "#F2B2CC", "#4C4C4C", "#999999", "#4C99B2", "#B266E5", "#253192", "#7F664C", "#57A64E", "#CC4C4C", "#000000");
@@ -98,7 +98,6 @@ b.addEventListener("mousedown", selectColor, false);
 </head>
 
 <body onLoad="int()" style="background-color:#333333; margin:0px";>
-<img id="pencil" src="images/draw.png" alt="Select Pencil Tool" width="50" height="50"></img>
 <canvas id="t" width="1600" height="50" style="background-color:#232323" mousedown="selectColor(event)"></canvas>
 <canvas id="scrn" width="612" height="342" style="background-color:#F0F0F0" mousedown="draw(event)"></canvas>
 <canvas id="b" width="1600" height="50" style="background-color:#232323"></canvas>
@@ -107,7 +106,7 @@ b.addEventListener("mousedown", selectColor, false);
 
 <script>
 drawColors();
-drawToolBar();
+//drawToolBar();
 var c = document.getElementById("scrn");
 var b = document.getElementById("b");
 c.style.position = "absolute";
@@ -116,6 +115,11 @@ c.style.top = screen.availHeight/2-342/2-50+'px';
 
 b.style.position = "absolute";
 b.style.top = screen.availHeight-135+'px';
+
+var ct = document.getElementById("b");
+var o = ct.getContext("2d");
+var d = document.getElementById("pencil");
+o.drawImage(d, 50, 800);
 </script>
 
 </body>
