@@ -1,1 +1,126 @@
-Test
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+p2
+{
+position:absolute;
+left:2px;
+top:21px;
+color:#d1d1d1;
+font-family:"Segoe UI Symbol";
+font-size:20px;
+}
+</style>
+
+<title>upaint 0.1</title>
+
+<script>
+
+var colors = new Array("#F0F0F0", "#F2B233", "#E57FD8", "#99B2F2", "#DEDE6C", "#7FCC19", "#F2B2CC", "#4C4C4C", "#999999", "#4C99B2", "#B266E5", "#253192", "#7F664C", "#57A64E", "#CC4C4C", "#000000");
+var colorList = new Array("White", "Orange", "Magenta", "Light Blue", "Yellow", "Lime", "Pink", "Gray", "Light Gray", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Black");
+var ccolor = colors[1];
+
+function drawColors()
+{
+	var o = document.getElementById("t").getContext("2d");
+	o.fillStyle = "#232323";
+	o.fillRect(0, 0, screen.availWidth, 30);
+	for (i = 0; i <= 15; i++)
+	{
+		o.fillStyle = colors[i];
+		if (colors[i] == ccolor)
+		{
+			o.fillRect(i*(screen.availWidth/16), 1, screen.availWidth/16, 21);
+			document.getElementById("cColor").innerHTML = colorList[i];
+		}
+		else
+		{
+			o.fillRect(i*(screen.availWidth/16), 1, screen.availWidth/16, 15);		
+		}
+	}
+}
+function selectColor(e)
+{
+	//var o = document.getElementById("t").getContext("2d");
+	
+	for (i = 0; i <= 15; i++)
+	{
+		if (e.clientX >= i*(screen.availWidth/16) && e.clientX <= i*(screen.availWidth/16)+(screen.availWidth/16) && e.clientY <= 15)
+		{
+			ccolor = colors[i];
+			drawColors();
+		}
+	}
+}
+
+function draw(e)
+{
+var can = document.getElementById("scrn");
+var o = can.getContext("2d");
+
+for (i = 0; i <= 51; i++)
+{
+	if (e.x-can.offsetLeft >= i*12 && e.clientX-5-can.offsetLeft <= i*12+12)
+	{
+		var x = i
+	}
+	
+	else
+	{
+	alert("Something Didnt Go Right! Please Report W/ This : X OFF");
+	}
+}
+
+for (i = 0; i <= 19; i++)
+{
+	if (e.y-can.offsetTop >= i*18 && e.clientY-8-can.offsetTop <= i*18+18)
+	{
+		var y = i
+	}
+	
+	else
+	{
+	alert("Something Didnt Go Right! Please Report W/ This : Y OFF");
+	}
+}
+
+o.fillStyle = ccolor;
+o.fillRect( x*12, y*18, 12, 18);
+}
+
+function int()
+{
+var c = document.getElementById("scrn");
+c.addEventListener("mousedown", draw, false);
+var b = document.getElementById("t");
+b.addEventListener("mousedown", selectColor, false);
+}
+</script>
+
+</head>
+
+<body onLoad="int()" style="background-color:#333333; margin:0px";>
+<canvas id="t" width="1600" height="50" style="background-color:#232323" mousedown="selectColor(event)"></canvas>
+<canvas id="scrn" width="612" height="342" style="background-color:#F0F0F0" mousedown="draw(event)"></canvas>
+<canvas id="b" width="1600" height="50" style="background-color:#232323"></canvas>
+<p2 id="cColor">Hi</p2>
+
+
+<script>
+drawColors();
+var c = document.getElementById("scrn");
+var b = document.getElementById("b");
+c.style.position = "absolute";
+c.style.left = screen.availWidth/2-612/2+'px';
+c.style.top = screen.availHeight/2-342/2-50+'px';
+
+b.style.position = "absolute";
+b.style.top = screen.availHeight-135+'px';
+</script>
+
+</body>
+
+</html>
